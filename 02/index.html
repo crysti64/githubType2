@@ -1,14 +1,33 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="utf-8">
     <title>Selected Shakespeare Plays</title>
-
     <link rel="stylesheet" href="02.css" type="text/css" />
-
     <script src="jquery.js"></script>
-    <script src="02.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#selected-plays > li").addClass('horizontal');
+            $("#selected-plays li:not('.horizontal')").addClass('sub-level');
+            $("a[href^='mailto']").addClass('mailto');
+            $("a[href$='pdf']").addClass('pdflink');
+            $("a[href^='http'][href*='henry']").addClass('henrylink');
+
+            $("table tr:even").addClass('alt');
+            $("td:contains(Henry)").parent().children().addClass('highlight');
+
+            $("#selected-plays > li  li").addClass("special");
+            $("tr > td:last-child").addClass('year');
+
+            $("td:contains(Tragedy)").parent().addClass("special");
+            $('a').filter(function(){
+                return this.hostname && this.hostname != location.hostname;
+            }).addClass('external');
+
+            $("li > a").parent().siblings().addClass('afterlink');
+            $("a[href$='pdf']").closest("ul").addClass('tragedy');
+        });
+    </script>
   </head>
   <body>
     <div id="container">
